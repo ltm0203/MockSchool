@@ -1,0 +1,149 @@
+﻿@using MockSchoolManagement.Application.Dtos;
+@model PagedResultDto<Student>
+
+@{
+    ViewBag.Title = "学生列表页面";
+}
+<h1>学生列表</h1>
+<form asp-action="Index" method="get">
+
+    <div class="form-actions no-color">
+        <input type="hidden" name="CurrentPage" value="@Model.CurrentPage" />
+        <input type="hidden" name="Sorting" value="@Model.Sorting" />
+        <p>
+            请输入名称: <input type="text" name="FilterText" value="@Model.FilterText" />
+            <input type="submit" value="查询" class="btn btn-outline-dark" /> |
+            <a asp-action="Index">返回所有列表</a>| <a asp-action="Create">
+                添加学生
+            </a>
+        </p>
+    </div>
+</form>
+
+<div class="  table-responsive-sm">
+    @if (Model.Data.Any())
+    {
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">头像</th>
+                    <th scope="col" class="sort-link">
+                        <a asp-action="Index"
+                           asp-route-Sorting="Name" asp-route-CurrentPage="@Model.CurrentPage"  asp-route-FilterText="@Model.FilterText">
+                            名字
+                        </a>
+                        <a class="pl-3" asp-action="Index"  asp-route-CurrentPage="@Model.CurrentPage"  asp-route-FilterText="@Model.FilterText" asp-route-Sorting="Name desc">
+                            降序
+                        </a>
+                    </th>
+                    <th>
+                        <a asp-action="Index" asp-route-Sorting="Email " asp-route-CurrentPage="@Model.CurrentPage"  asp-route-FilterText="@Model.FilterText">
+                            邮箱地址
+                        </a>
+
+                        <a class="pl-3" asp-action="Index" asp-route-Sorting="Email desc" asp-route-CurrentPage="@Model.CurrentPage"  asp-route-FilterText="@Model.FilterText">
+                            降序
+                        </a>
+                    </th>
+                    <th scope="col">
+                        <a class="pl-3" asp-action="Index" asp-route-Sorting="Major " asp-route-CurrentPage="@Model.CurrentPage"  asp-route-FilterText="@Model.FilterText">
+                            主修科目
+                        </a>
+                        <a class="pl-3" asp-action="Index" asp-route-Sorting="Major desc" asp-route-CurrentPage="@Model.CurrentPage"  asp-route-FilterText="@Model.FilterText">
+                            降序
+                        </a>
+                    </th>
+                    <th scope="col">
+                        <a class="pl-3" asp-action="Index" asp-route-Sorting="EnrollmentDate " asp-route-CurrentPage="@Model.CurrentPage"  asp-route-FilterText="@Model.FilterText">
+                            入学时间
+                        </a>
+
+                        <a class="pl-3" asp-action="Index" asp-route-Sorting="EnrollmentDate desc" asp-route-CurrentPage="@Model.CurrentPage"  asp-route-FilterText="@Model.FilterText">
+                            降序
+                        </a>
+                    </th>
+                    <th scope="col">操作</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var student in Model.Data)
+                {
+                    var photoPath = "~/images/noimage.png";
+                    if (student.PhotoPath != null)
+                    {
+                        photoPath = "~/images/avatars/" + student.PhotoPath;
+                    }
+                    <tr>
+                        <td>
+                            <img class="table-img  imageThumbnail " src="@photoPath" asp-append-version="true" />
+                        </td>
+                        <th scope="row">@student.Name</th>
+                        <td>@student.Email</td>
+
+                        <td> @student.Major.GetDisplayName()</td>
+                        <td> @student.EnrollmentDate.ToString("yyyy-MM-dd")</td>
+                        <td>
+                            <form method="post" asp-action="DeleteUser" asp-route-id="@student.Id">
+                                <a asp-controller="Home" class="btn btn-info" asp-action="Details" asp-route-id="@student.EncryptedId">查看</a>
+                                <a asp-controller="home" asp-action="edit" asp-route-id="@student.EncryptedId" class="btn btn-primary m-1">编辑</a>
+
+                                <span id="confirmDeleteSpan_@student.Id" style="display: none">
+                                    <span>你确定你要删除?</span>
+                                    <button type="submit" class="btn btn-danger">是</button>
+                                    <a href="#"
+                                       class="btn btn-primary"
+                                       onclick="confirmDelete('@student.Id', false)">
+                                        否
+                                    </a>
+                                </span>
+
+                                <span id="deleteSpan_@student.Id">
+                                    <a href="#" class="btn btn-danger" onclick="confirmDelete('@student.Id', true)">删除</a>
+                                </span>
+                            </form>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    }
+
+    <div>
+        <ul class="pagination">
+
+            <li class="page-item @(!Model.ShowFirst? "disabled":"")">
+                <a asp-route-CurrentPage="1" asp-route-FilterText="@Model.FilterText"  asp-route-Sorting="@Model.Sorting" class="page-link">
+                <i class="fa fa-fast-backward"></i></a>
+            </li>
+
+            <li class="page-item @(!Model.ShowPrevious? "disabled":"")">
+                <a asp-route-CurrentPage="@(Model.CurrentPage -1)" asp-route-FilterText="@Model.FilterText"  asp-route-Sorting="@Model.Sorting"  class="page-link">
+                    <i class="fa fa-step-backward"></i>
+                </a>
+            </li>
+
+            @for (var i = 1; i <= Model.TotalPages; i++)
+            {
+                <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                    <a asp-route-currentpage="@i"  asp-route-FilterText="@Model.FilterText"  asp-route-Sorting="@Model.Sorting"  class="page-link">@i</a>
+                </li>
+            }
+           
+
+            <li class="page-item  @(!Model.ShowNext? "disabled":"")">
+                <a asp-route-CurrentPage="@(Model.CurrentPage + 1)" asp-route-FilterText="@Model.FilterText"  asp-route-Sorting="@Model.Sorting"  class="page-link">
+                <i class="fa fa-step-forward"></i></a>
+            </li>
+
+            <li class="page-item  @(!Model.ShowLast? "disabled":"")">
+                <a asp-route-CurrentPage="@Model.TotalPages" asp-route-FilterText="@Model.FilterText"  asp-route-Sorting="@Model.Sorting"  class="page-link">
+                <i class="fa fa-fast-forward"></i></a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/CustomScript.js" asp-append-version="true"></script>
+}

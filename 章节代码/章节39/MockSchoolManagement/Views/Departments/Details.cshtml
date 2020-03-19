@@ -1,0 +1,26 @@
+﻿@model Department
+@{
+    ViewBag.Title = "部门详情信息";
+}
+<div class="row justify-content-center m-3">
+    <div class="col-sm-6">
+
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">
+                <h1>@Model.Name  详情 </h1>
+            </div>
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    @Html.DisplayNameFor(a => a.Name) : @Model.Name
+                </h5>
+                <h5 class="card-title">@Html.DisplayNameFor(a => a.StartDate) : @Html.DisplayFor(a => a.StartDate)</h5>
+                <h5 class="card-title">@Html.DisplayNameFor(a => a.Budget) : @Html.DisplayFor(a => a.Budget)</h5>
+                <h5 class="card-title">@Html.DisplayNameFor(a => a.TeacherID): @Model.Administrator.Name</h5>
+            </div>
+            <div class="card-footer text-center">
+                <a asp-action="Index" class="btn btn-info">返回</a>
+                <a asp-action="edit" asp-route-Id="@Model.DepartmentID" class="btn btn-primary">编辑</a>
+            </div>
+        </div>
+    </div>
+</div>

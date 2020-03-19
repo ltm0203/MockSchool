@@ -1,0 +1,39 @@
+﻿@model MockSchoolManagement.ViewModels.HomeDetailsViewModel
+@{
+
+    ViewBag.Title = "学生详情";
+    var photoPath = "~/images/noimage.png";
+        if (Model.Student.PhotoPath!=null)
+        {
+            photoPath = "~/images/avatars/" + Model.Student.PhotoPath ;
+        }
+}
+<h3>@Model.PageTitle</h3>
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-header">
+                <h1>@Model.Student.Name</h1>
+            </div>
+            <div class="card-body text-center">
+                <img class="card-img-top imageThumbnail" src="@photoPath" asp-append-version="true" />
+                <h4>学生ID : @Model.Student.Id</h4>
+                <h4>邮箱 : @Model.Student.Email</h4>
+                <h4>主修科目 :@Model.Student.Major.GetDisplayName()  </h4>
+                <h4>入学时间 :@Model.Student.EnrollmentDate.ToString("yyyy-MM-dd")  </h4>
+            </div>
+           
+            <div class="card-footer text-center">
+                <a asp-action="Index" asp-controller="home" class="btn btn-info">返回</a>
+                <a  asp-action="edit" asp-controller="home" asp-route-ID="@Model.Student.EncryptedId" class="btn btn-primary">编辑</a>
+                <a href="#" class="btn btn-danger">删除</a>
+            </div>
+        </div>
+        
+    </div>
+</div>   
+
+@section Scripts{
+        <script src="~/js/CustomScript.js"></script>
+}

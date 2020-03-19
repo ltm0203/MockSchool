@@ -1,0 +1,47 @@
+﻿@using  MockSchoolManagement.ViewModels.Departments
+@model DepartmentCreateViewModel
+@{ ViewBag.Title = "创建院系"; }
+
+<form asp-action="Create" method="post" class="mt-3">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input type="hidden" asp-for="DepartmentID" />
+    <div class="form-group row">
+        <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Name" class="form-control" placeholder="请输入院系名称" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="StartDate" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="StartDate" type="date" class="form-control" placeholder="请输入成立时间" />
+            <span asp-validation-for="StartDate" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Budget" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Budget" class="form-control" placeholder="请输入预算" />
+            <span asp-validation-for="Budget" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label asp-for="TeacherList" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <select asp-for="TeacherID"
+                    class="custom-select mr-sm-2"
+                    asp-items="@Model.TeacherList">
+                <option value="">请选择</option>
+            </select>
+            <span asp-validation-for="TeacherList" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group row">
+        <div class="col-sm-10">
+            <button type="submit" class="btn btn-primary">创建</button>
+        </div>
+    </div>
+</form>

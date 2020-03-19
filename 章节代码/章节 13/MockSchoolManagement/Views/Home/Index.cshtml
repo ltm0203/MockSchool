@@ -1,0 +1,30 @@
+﻿@model IEnumerable<MockSchoolManagement.Models.Student>
+@{
+    ViewBag.Title = "学生列表";
+}
+
+<table>
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>名字</th>
+            <th>主修科目</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>
+                    @student.Id
+                </td>
+                <td>
+                    @student.Name
+                </td>
+                <td>
+                    @student.Major
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

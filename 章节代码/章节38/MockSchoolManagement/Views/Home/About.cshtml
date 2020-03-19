@@ -1,0 +1,32 @@
+﻿@using MockSchoolManagement.Application.Students.Dtos;
+@model IEnumerable<EnrollmentDateGroupDto>
+@{ ViewBag.Title = "学生的统计信息"; }
+
+<h1>
+    学生信息统计
+</h1>
+
+<table class="table  table-striped">
+    <thead>
+        <tr>
+            <th>
+                入学时间
+            </th>
+            <th>
+                学生人数
+            </th>
+        </tr>
+    </thead>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)              
+            </td>
+            <td>
+                @item.StudentCount
+            </td>
+        </tr>
+    }
+</table>

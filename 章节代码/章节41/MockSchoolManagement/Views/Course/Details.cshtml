@@ -1,0 +1,31 @@
+﻿@model Course
+@{
+    ViewBag.Title = "课程详情信息";
+}
+
+<div class="row justify-content-center m-3">
+    <div class="col-sm-6">
+
+        <div class="card bg-light mb-3" style="max-width: 18rem;">
+            <div class="card-header">
+                <h1>@Model.Title  详情 </h1>
+            </div>
+            <div class="card-body text-center">
+
+                <h5 class="card-title">
+                    @Html.DisplayNameFor(a => a.Title) : @Model.Title
+                </h5>
+
+                <h5 class="card-title">@Html.DisplayNameFor(a => a.CourseID) : @Model.CourseID</h5>
+                <h5 class="card-title">@Html.DisplayNameFor(a => a.DepartmentID) : @Model.Department.Name</h5>
+                <h5 class="card-title">@Html.DisplayNameFor(a => a.Credits): @Model.Credits</h5>
+            </div>
+
+            <div class="card-footer text-center">
+                <a asp-action="Index" class="btn btn-info">返回</a>
+                <a asp-action="edit" asp-route-courseId="@Model.CourseID" class="btn btn-primary">编辑</a>
+            </div>
+        </div>
+    </div>
+</div>
+ 

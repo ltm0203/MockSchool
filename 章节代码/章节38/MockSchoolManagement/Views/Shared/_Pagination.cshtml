@@ -1,0 +1,35 @@
+﻿<div>
+    <ul class="pagination">
+
+        <li class="page-item @(!Model.ShowFirst? "disabled":"")">
+            <a asp-route-CurrentPage="1" asp-route-FilterText="@Model.FilterText" asp-route-Sorting="@Model.Sorting" class="page-link">
+                <i class="fa fa-fast-backward"></i>
+            </a>
+        </li>
+
+        <li class="page-item @(!Model.ShowPrevious? "disabled":"")">
+            <a asp-route-CurrentPage="@(Model.CurrentPage -1)" asp-route-FilterText="@Model.FilterText" asp-route-Sorting="@Model.Sorting" class="page-link">
+                <i class="fa fa-step-backward"></i>
+            </a>
+        </li>
+
+        @for (var i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                <a asp-route-currentpage="@i" asp-route-FilterText="@Model.FilterText" asp-route-Sorting="@Model.Sorting" class="page-link">@i</a>
+            </li>
+        }
+
+        <li class="page-item  @(!Model.ShowNext? "disabled":"")">
+            <a asp-route-CurrentPage="@(Model.CurrentPage + 1)" asp-route-FilterText="@Model.FilterText" asp-route-Sorting="@Model.Sorting" class="page-link">
+                <i class="fa fa-step-forward"></i>
+            </a>
+        </li>
+
+        <li class="page-item  @(!Model.ShowLast? "disabled":"")">
+            <a asp-route-CurrentPage="@Model.TotalPages" asp-route-FilterText="@Model.FilterText" asp-route-Sorting="@Model.Sorting" class="page-link">
+                <i class="fa fa-fast-forward"></i>
+            </a>
+        </li>
+    </ul>
+</div>

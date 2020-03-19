@@ -1,0 +1,44 @@
+﻿@model List<Student>
+ 
+@{ ViewBag.Title = "学生列表页面"; }
+
+<div class="row">
+    
+     
+        @foreach (var student in Model)
+        {
+            var photoPath = "~/images/noimage.png";
+            if (student.PhotoPath!=null)
+            {
+                photoPath = "~/images/avatars/" + student.PhotoPath ;
+            }
+
+
+            <div class="col col-md-4 ">
+
+            
+
+                <div class="card m-3">
+                <div class="card-header">
+                    <h3 class="card-title">@student.Name</h3>
+                </div>
+       
+                <img class="card-img-top imageThumbnail " src="@photoPath" asp-append-version="true" />
+
+                <div class="card-body text-center">
+                    <h5 class="card-title">主修科目：@student.Major.GetDisplayName()</h5>
+                    <h5 class="card-title">入学时间：@student.EnrollmentDate.ToString("yyyy-MM-dd")</h5>
+
+                </div>
+
+                <div class="card-footer text-center">
+                    <a asp-controller="Home" class="btn btn-info" asp-action="Details" asp-route-id="@student.EncryptedId">查看</a>
+                    <a asp-controller="home" asp-action="edit"   asp-route-id="@student.EncryptedId"   class="btn btn-primary m-1">编辑</a>
+                    <a href="#" class="btn btn-danger">删除</a>
+                </div>
+            </div>
+            </div>  }
+  
+</div>
+ 
+ 

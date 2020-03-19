@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup> 
+  
+  
+  <ItemGroup>
+    <PackageReference Include="System.Linq.Dynamic.Core" Version="1.0.19" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MockSchoolManagement.Core\MockSchoolManagement.Core.csproj" />
+    <ProjectReference Include="..\MockSchoolManagement.EntityFrameworkCore\MockSchoolManagement.EntityFrameworkCore.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,30 @@
+﻿{
+  "version": "1.0", //当前的libman文件版本
+  "defaultProvider": "cdnjs", //默认从哪个CDN网络下载文件
+  "libraries": [
+    {
+      "library": "twitter-bootstrap@4.3.1", //要下载的前端包名称
+      "destination": "wwwroot/lib/twitter-bootstrap/" //存放库的文件路径地址
+    },
+    {
+      "library": "jquery@3.4.1", //要下载的前端包名称
+      "destination": "wwwroot/lib/jquery/", //存放库的文件路径地址
+      "provider": "jsdelivr", //针对某个独立的文件，从其他源下载。
+      "files": [ "dist/jquery.js", "dist/jquery.min.js" ] //下载该库中特定的文件，而不是下载所有的文件
+
+    },
+    {
+      "library": "jquery-validate@1.19.1",
+      "destination": "wwwroot/lib/jquery-validate"
+    },
+    {
+      "library": "jquery-validation-unobtrusive@3.2.11",
+      "destination": "wwwroot/lib/jquery-validate-unobtrusive"
+    },
+    {
+      "provider": "jsdelivr",
+      "library": "font-awesome@4.7.0",
+      "destination": "wwwroot/lib/font-awesome"
+    }
+  ]
+}
