@@ -47,4 +47,10 @@
     <ProjectReference Include="..\MockSchoolManagement.EntityFrameworkCore\MockSchoolManagement.EntityFrameworkCore.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

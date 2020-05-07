@@ -11,6 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockSchoolManagement.Core",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MockSchoolManagement.EntityFrameworkCore", "src\MockSchoolManagement.EntityFrameworkCore\MockSchoolManagement.EntityFrameworkCore.csproj", "{5E739605-CE86-441D-9717-618C20F23B12}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "scripts", "scripts", "{3CC73DB0-5FAC-4808-99D7-CF75CCC388FB}"
+	ProjectSection(SolutionItems) = preProject
+		scripts\buildDocker.ps1 = scripts\buildDocker.ps1
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

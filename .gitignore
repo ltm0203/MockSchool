@@ -348,3 +348,5 @@ appsettings.Development.json
 MyVuePress/docs/.vuepress/dist
 MyVuePress/dist
 MockSchoolManagement/src/MockSchoolManagement.Mvc/healthchecksdb
+MockSchoolManagement/scripts/outputs
+MockSchoolManagement/src/MockSchoolManagement.Mvc/wwwroot/lib

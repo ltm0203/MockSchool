@@ -1,27 +1,13 @@
-#See https://aka.ms/containerfastmode to understand how Visual Studio uses this Dockerfile to build your images for faster debugging.
+# 设置运行时
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 AS base
 
-#Depending on the operating system of the host machines(s) that will build or run the containers, the image specified in the FROM statement may need to be changed.
-#For more information, please see https://aka.ms/containercompat
+COPY . .
 
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1-nanoserver-1903 AS base
+## 设置为APP为项目路径
 WORKDIR /app
+## 开放80端口
 EXPOSE 80
 
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1-nanoserver-1903 AS build
-WORKDIR /src
-COPY ["src/MockSchoolManagement.Mvc/MockSchoolManagement.Mvc.csproj", "src/MockSchoolManagement.Mvc/"]
-COPY ["src/MockSchoolManagement.Application/MockSchoolManagement.Application.csproj", "src/MockSchoolManagement.Application/"]
-COPY ["src/MockSchoolManagement.EntityFrameworkCore/MockSchoolManagement.EntityFrameworkCore.csproj", "src/MockSchoolManagement.EntityFrameworkCore/"]
-COPY ["src/MockSchoolManagement.Core/MockSchoolManagement.Core.csproj", "src/MockSchoolManagement.Core/"]
-RUN dotnet restore "src/MockSchoolManagement.Mvc/MockSchoolManagement.Mvc.csproj"
-COPY . .
-WORKDIR "/src/src/MockSchoolManagement.Mvc"
-RUN dotnet build "MockSchoolManagement.Mvc.csproj" -c Release -o /app/build
-
-FROM build AS publish
-RUN dotnet publish "MockSchoolManagement.Mvc.csproj" -c Release -o /app/publish
-
-FROM base AS final
-WORKDIR /app
-COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "MockSchoolManagement.Mvc.dll"]
+
+ 
