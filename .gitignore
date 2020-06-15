@@ -350,3 +350,4 @@ MyVuePress/dist
 MockSchoolManagement/src/MockSchoolManagement.Mvc/healthchecksdb
 MockSchoolManagement/scripts/outputs
 MockSchoolManagement/src/MockSchoolManagement.Mvc/wwwroot/lib
+/MockSchoolManagement/src/MockSchoolManagement.Mvc/appsettings.Production.json

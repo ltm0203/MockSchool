@@ -1,24 +1,24 @@
-﻿<html>
+<html>
 <head>
     <meta name="viewport" content="width=device-width" />
 
-    <environment include="Development">
-        <link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
-        <link href="~/lib/fontawesome/css/font-awesome.css" rel="stylesheet" />
-    </environment>
+	<environment include="Development">
+		<link href="~/lib/twitter-bootstrap/css/bootstrap.css" rel="stylesheet" />
+		<link href="~/lib/font-awesome/css/font-awesome.css" rel="stylesheet" />
+	</environment>
 
-    <environment exclude="Development">
-        <link rel="stylesheet"
-              href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-              integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-              crossorigin="anonymous"
-              asp-fallback-href="~/lib/twitter-bootstrap/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only"
-              asp-fallback-test-property="position"
-              asp-fallback-test-value="absolute"
-              asp-suppress-fallback-integrity="true" />
-        <link href="~/lib/fontawesome/css/font-awesome.min.css" rel="stylesheet" />
-    </environment>
+	<environment exclude="Development">
+		<link rel="stylesheet"
+			  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+			  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			  crossorigin="anonymous"
+			  asp-fallback-href="~/lib/twitter-bootstrap/css/bootstrap.min.css"
+			  asp-fallback-test-class="sr-only"
+			  asp-fallback-test-property="position"
+			  asp-fallback-test-value="absolute"
+			  asp-suppress-fallback-integrity="true" />
+		<link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+	</environment>
 
     <link href="~/css/site.css" rel="stylesheet" asp-append-version="true" />
     <title>@ViewBag.Title</title>

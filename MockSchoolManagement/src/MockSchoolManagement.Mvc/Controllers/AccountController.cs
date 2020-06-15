@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -73,7 +73,7 @@ namespace MockSchoolManagement.Controllers
                     }
 
                     ViewBag.ErrorTitle = "注册成功";
-                    ViewBag.ErrorMessage = $"在你登入系统前,我们已经给您发了一份邮件，需要您先进行邮件验证，点击确认链接即可完成。";
+                    ViewBag.ErrorMessage = $"在你登入系统前因为您在模拟生产环境：所以可以复制激活链接，到浏览器的地址栏中激活账号信息：{confirmationLink}";
                     return View("Error");
                 }
                 //如果有任何错误，将它们添加到ModelState对象中
