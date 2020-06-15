@@ -251,7 +251,8 @@ namespace MockSchoolManagement.Controllers
                         //需要注入ILogger<AccountController> _logger;服务，记录生成的URL链接
                         _logger.Log(LogLevel.Warning, confirmationLink);
                         ViewBag.ErrorTitle = "注册成功";
-                        ViewBag.ErrorMessage = $"在你登入系统前,我们已经给您发了一份邮件，需要您先进行邮件验证，点击确认链接即可完成。";
+ 
+                        ViewBag.ErrorMessage = $"在你登入系统前因为您在模拟生产环境：所以可以复制激活链接，到浏览器的地址栏中激活账号信息：{confirmationLink}";
                         return View("Error");
                     }
 

@@ -1,7 +1,8 @@
-﻿using System;
+using System;
 using System.Linq;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MockSchoolManagement.EntityFrameworkCore;
 using MockSchoolManagement.Models;
@@ -23,9 +24,21 @@ namespace MockSchoolManagement.Infrastructure.Data
                 var userManager = scope.ServiceProvider.GetService<UserManager<ApplicationUser>>();
                 var roleManager = scope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
 
-                #region 学生种子信息
+                System.Console.WriteLine("开始执行迁移数据库...");
+                dbcontext.Database.Migrate();
+                System.Console.WriteLine("数据库迁移完成...");
 
-                if (dbcontext.Students.Any())
+
+				#region 用户的初始化数据
+
+
+				#endregion
+
+
+
+				#region 学生种子信息
+
+				if (dbcontext.Students.Any())
                 {
                     return builder; // 数据已经初始化了。
                 }

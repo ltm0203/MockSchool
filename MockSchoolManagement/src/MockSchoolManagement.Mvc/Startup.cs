@@ -1,5 +1,4 @@
 using EmployeeManagement.Security;
-using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
@@ -61,7 +60,7 @@ namespace MockSchoolManagement
 
             services.AddHealthChecks()
                 .AddSqlServer(_configuration.GetConnectionString("MockStudentDBConnection"));
-            services.AddHealthChecksUI();
+          //  services.AddHealthChecksUI();
 
             #endregion 健康检查
 
@@ -276,12 +275,12 @@ namespace MockSchoolManagement
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                endpoints.MapHealthChecks("/healthz", new HealthCheckOptions()
-                {
-                    Predicate = _ => true,
-                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-                });
-                endpoints.MapHealthChecksUI();
+                //endpoints.MapHealthChecks("/healthz", new HealthCheckOptions()
+                //{
+                //    Predicate = _ => true,
+                //    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+                //});
+                //endpoints.MapHealthChecksUI();
             });
         }
 
